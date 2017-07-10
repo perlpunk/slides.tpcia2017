@@ -1001,7 +1001,12 @@ content: |
   [*]Ingy was invited to the Perl Toolchain Summit 2017 in Lyon
   [*](Formerly known as Perl QA Hackathons)
   [*]He wanted to come to Berlin before
-  [*]The idea of the first YAML Summit was born, and luckily Flyx was able to come from Stuttgart spontaneously
+  [/list]
+  [codebox animation=5,appear][color=grey]# IRC[/color]
+  [color=grey]<[/color][color=red]ingy[/color][color=grey]>[/color] I have an idea[/codebox]
+  [list animation="6,greyin"]
+  [*]The idea of the first YAML Summit was born
+  [*]Luckily Flyx was able to come from Stuttgart spontaneously
   [/list]
 ---
 title: YAML Summit
@@ -1011,14 +1016,14 @@ content: |
   [*]The main topic was how to make the next version easier to implement
   [*]And stay compatible with the most common YAML documents
   [*]So we created a couple of RFCs about removing the "features" I was talking about earlier
-  [*]https://github.com/yaml/summit.yaml.io/wiki/YAML-RFC-Index
+  [*][url=https://github.com/yaml/summit.yaml.io/wiki/YAML-RFC-Index]https://github.com/yaml/summit.yaml.io/wiki/YAML-RFC-Index[/url]
   [/list]
 ---
 title: Perl Toolchain Summit
 content: |
   [title][/title]
   [list animation="1,greyin"]
-  [*]For my organization of the QA Hackathon 2015, the Hackathon crew thouhgt they owe me an invitation
+  [*]For my organization of the QA Hackathon 2015, the Hackathon crew thought they owe me an invitation
   [*]About two weeks before the 2017 Summit, Chad Granum had to cancel
   [*]So I was invited to Lyon, too, and Ingy and I flew there together
   [/list]
@@ -1034,8 +1039,8 @@ content: |
   [*]The new API isn't finished
   [*]For now it is using my code from YAML::PP to parse and construct
   [*]We released a developer version
+  [*][url=http://act.qa-hackathon.org/qa2017/wiki?node=Results]http://act.qa-hackathon.org/qa2017/wiki?node=Results[/url]
   [/list]
-  http://act.qa-hackathon.org/qa2017/wiki?node=Results
 ---
 title: Wait, What about Perl 6?
 content: |
@@ -1051,7 +1056,7 @@ content: |
   [*]Only Tags aren't implemented yet
   [*]The inner API will change, the outer probably not
   [/list]
-  [codebox]use v6;
+  [codebox animation=11,flyin]use v6;
   use YAML;
   my %hash = yaml.load($yaml);
   my @documents = yaml.all.load($yaml);
@@ -1075,6 +1080,7 @@ content: |
   [*][url=https://github.com/flyx]https://github.com/flyx[/url]
   [/list]
 ---
-title: End
+title: Questions?
 content: |
   [title][/title]
+
