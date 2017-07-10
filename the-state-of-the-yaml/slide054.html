@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-store" />
-<title>Enter YAML::PP</title>
+<title>YAML Editor Example 6</title>
 <link rel="prev" href="slide053.html" />
 <link rel="next" href="slide055.html" />
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -17,25 +17,46 @@
 <div id="test"></div>
 -->
 <div id="bbslides-slide" class="bbslides-frame">
-<h1 id="node_1" class="bbslides-h1">Enter YAML::PP</h1>
-<ul><li id="node_3">So, on New Years Day 2017 I started to write it</li><li id="node_4">YAML::PP::Parser can parse a lot of YAML already</li><li id="node_5">No support for flow style yet, though</li><li id="node_6">It also contains a loader which constructs the data from the parser events</li><li id="node_7">It is unique among the Perl YAML Loaders because:</li><li id="node_8">It supports Booleans (via boolean.pm or JSON::PP::Boolean)</li><li id="node_9">That means you can load from YAML and dump to JSON, and booleans will survive!</li><li id="node_10">Tags are not supported yet</li><li id="node_11">Lots to do!</li></ul>
+<h2 id="node_1" class="bbslides-h2"><pre id="node_2">yaml-editor -g /perl.*json</pre></h2>
+<div id="node_3" class="codebox codeboxsmall"><span class="magenta">---</span><span class="">                      </span><span class="on_black white">|</span><span class="yellow">  1 </span><span class="magenta">{</span><span class="">                    </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                        </span><span class="on_black white">|</span><span class="magenta">{
+</span><span class="cyan">hello</span><span class="magenta">:</span><span class=""> </span><span class="red">&quot;!&quot;</span><span class="">               </span><span class="on_black white">|</span><span class="yellow">  2 </span><span class="">  &quot;</span><span class="yellow">from</span><span class="">&quot;: &quot;</span><span class="red">the</span><span class="">&quot;,     </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">from</span><span class="">&quot;: &quot;</span><span class="red">the</span><span class="">&quot;,         </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">from</span><span class="">&quot;: &quot;</span><span class="red">the</span><span class="">&quot;,
+</span><span class="cyan">from</span><span class="magenta">:</span><span class=""> the                </span><span class="on_black white">|</span><span class="yellow">  3 </span><span class="">  &quot;</span><span class="yellow">german perl</span><span class="">&quot;: &quot;</span><span class="red">wor</span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">german perl</span><span class="">&quot;: &quot;</span><span class="red">worksho</span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">german perl</span><span class="">&quot;: &quot;</span><span class="red">worksho
+</span><span class="cyan">german perl</span><span class="magenta">:</span><span class=""> workshop    </span><span class="on_black white">|</span><span class="yellow">    </span><span class="red">kshop</span><span class="">&quot;,              </span><span class="on_black white">|</span><span class="red">p</span><span class="">&quot;,                      </span><span class="on_black white">|</span><span class="red">p</span><span class="">&quot;,
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">  4 </span><span class="">  &quot;</span><span class="yellow">hello</span><span class="">&quot;: &quot;</span><span class="red">!</span><span class="">&quot;       </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">hello</span><span class="">&quot;: &quot;</span><span class="red">!</span><span class="">&quot;           </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">hello</span><span class="">&quot;: &quot;</span><span class="red">!</span><span class="">&quot;
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">  5 </span><span class="magenta">}</span><span class="">                    </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                        </span><span class="on_black white">|</span><span class="magenta">}
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|&lt;rl5-pp.json 1,1      All &lt;rl5-pm.json 1,1      All &lt;5-syck.json 1,1      All
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                        </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                        </span><span class="on_black white">|</span><span class="magenta">{
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">from</span><span class="">&quot;: &quot;</span><span class="red">the</span><span class="">&quot;,         </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">from</span><span class="">&quot;: &quot;</span><span class="red">the</span><span class="">&quot;,         </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">german perl</span><span class="">&quot;: &quot;</span><span class="red">worksho
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">german perl</span><span class="">&quot;: &quot;</span><span class="red">worksho</span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">german perl</span><span class="">&quot;: &quot;</span><span class="red">worksho</span><span class="on_black white">|</span><span class="red">p</span><span class="">&quot;,
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="red">p</span><span class="">&quot;,                      </span><span class="on_black white">|</span><span class="red">p</span><span class="">&quot;,                      </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">hello</span><span class="">&quot;: &quot;</span><span class="red">!</span><span class="">&quot;,
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">hello</span><span class="">&quot;: &quot;</span><span class="red">!</span><span class="">&quot;           </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">hello</span><span class="">&quot;: &quot;</span><span class="red">!</span><span class="">&quot;           </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">from</span><span class="">&quot;: &quot;</span><span class="red">the</span><span class="">&quot;
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                        </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                        </span><span class="on_black white">|</span><span class="magenta">}
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">~
+</span><span class="bold on_black white">input.yaml   2,10     All </span><span class="on_black white">&lt;rl5-xs.json 1,1      All &lt;5-tiny.json 1,1      All perl6.json   1,1      All
+</span><span class="">&quot;perl5-xs.json&quot; 5L, 65C
+</span>
+
+</div>
 </div>
 <script type="text/javascript">
-register_animation('node_3', 2, 'greyin', {});
-register_animation('node_4', 3, 'greyin', {});
-register_animation('node_5', 4, 'greyin', {});
-register_animation('node_6', 5, 'greyin', {});
-register_animation('node_7', 6, 'greyin', {});
-register_animation('node_8', 7, 'greyin', {});
-register_animation('node_9', 8, 'greyin', {});
-register_animation('node_10', 9, 'greyin', {});
-register_animation('node_11', 10, 'greyin', {});
 
 var prev_page = 'slide053.html';
 var next_page = 'slide055.html';
 </script>
 <div id="bbslides-navi">
-Slide 54/66
+Slide 54/73
 <a href="slide053.html" onclick="previous_step();return false">BACK</a>
 <a href="index.html">UP</a>
 <a href="slide055.html" onclick="next_step(); return false">NEXT</a>
@@ -44,7 +65,7 @@ next page: ( page down ) | previous page: ( page up ) |
 index: ( arrow-up )</span>
 
 <br>
-<progress id="slide-progress" value="54" max="66"></progress>
+<progress id="slide-progress" value="54" max="73"></progress>
 </div>
 </body>
 </html>

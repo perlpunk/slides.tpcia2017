@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-store" />
-<title>Folded Block Scalars</title>
+<title>Literal Block Scalars</title>
 <link rel="prev" href="slide021.html" />
 <link rel="next" href="slide023.html" />
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -17,22 +17,16 @@
 <div id="test"></div>
 -->
 <div id="bbslides-slide" class="bbslides-frame">
-<h1 id="node_1" class="bbslides-h1">Folded Block Scalars</h1>
+<h1 id="node_1" class="bbslides-h1">Literal Block Scalars</h1>
 <div id="node_2" class="bbslides-horizontal"><div id="node_3" class="codebox">---
-a: &gt;
-  lines
-  are folded except
+literal: |
+  keeps content including trailing spaces<span id="node_4" class="bbslides-trspace">  </span>
 
-  there is an empty line
-b: &gt;
-  or a
-    more
-  indented line
+  and newlines
 
 # JSON
 {
-  &quot;a&quot;: &quot;lines are folded except\nthere is an empty line\n&quot;,
-  &quot;b&quot;: &quot;or a\n  more\nindented line\n&quot;
+  &quot;literal&quot;: &quot;keeps content including trailing spaces<span id="node_5" class="bbslides-trspace">  </span>\n\nand newlines\n&quot;
 }
 </div></div>
 </div>
@@ -42,7 +36,7 @@ var prev_page = 'slide021.html';
 var next_page = 'slide023.html';
 </script>
 <div id="bbslides-navi">
-Slide 22/66
+Slide 22/73
 <a href="slide021.html" onclick="previous_step();return false">BACK</a>
 <a href="index.html">UP</a>
 <a href="slide023.html" onclick="next_step(); return false">NEXT</a>
@@ -51,7 +45,7 @@ next page: ( page down ) | previous page: ( page up ) |
 index: ( arrow-up )</span>
 
 <br>
-<progress id="slide-progress" value="22" max="66"></progress>
+<progress id="slide-progress" value="22" max="73"></progress>
 </div>
 </body>
 </html>

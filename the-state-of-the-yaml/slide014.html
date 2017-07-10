@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-store" />
-<title>Aliases & Anchors</title>
+<title>Null keys</title>
 <link rel="prev" href="slide013.html" />
 <link rel="next" href="slide015.html" />
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -17,28 +17,25 @@
 <div id="test"></div>
 -->
 <div id="bbslides-slide" class="bbslides-frame">
-<h1 id="node_1" class="bbslides-h1">Aliases &amp; Anchors</h1>
-<ul><li id="node_3">You can attach an &amp;anchor to any node</li><li id="node_4">This includes mapping keys</li><li id="node_5">You can refer to it with an *alias</li><li id="node_6">The anchor must be followed by a line break unless the node is a scalar</li><li id="node_7">js-yaml has problems with mapping key anchors</li></ul>
-<div id="node_8" class="codebox">---
-a mapping: <span id="node_9" class="bbslides-anchor">&amp;map</span>
-  <span id="node_10" class="bbslides-anchor">&amp;key</span> a: <span id="node_11" class="bbslides-anchor">&amp;value</span> b
-the same mapping: <span id="node_12" class="bbslides-alias">*map</span>
-key a: <span id="node_13" class="bbslides-alias">*key</span>
-value b: <span id="node_14" class="bbslides-alias">*value</span>
+<h1 id="node_1" class="bbslides-h1">Null keys</h1>
+How do you express a mapping key with a null value?
+<br>
+<div id="node_3" class="codebox">---
+~: a    <span id="node_4" class="bbslides-comment"># tilde</span>
+null: b <span id="node_5" class="bbslides-comment"># plain &quot;null&quot;</span>
+: c     <span id="node_6" class="bbslides-comment"># empty</span>
 </div>
+<br>
+Frameworks that complain about the empty key:
+libyaml, YAML.pm, YAML::Tiny, ruby psych, ruamel, YAML::Syck and more
 </div>
 <script type="text/javascript">
-register_animation('node_3', 2, 'greyin', {});
-register_animation('node_4', 3, 'greyin', {});
-register_animation('node_5', 4, 'greyin', {});
-register_animation('node_6', 5, 'greyin', {});
-register_animation('node_7', 6, 'greyin', {});
 
 var prev_page = 'slide013.html';
 var next_page = 'slide015.html';
 </script>
 <div id="bbslides-navi">
-Slide 14/66
+Slide 14/73
 <a href="slide013.html" onclick="previous_step();return false">BACK</a>
 <a href="index.html">UP</a>
 <a href="slide015.html" onclick="next_step(); return false">NEXT</a>
@@ -47,7 +44,7 @@ next page: ( page down ) | previous page: ( page up ) |
 index: ( arrow-up )</span>
 
 <br>
-<progress id="slide-progress" value="14" max="66"></progress>
+<progress id="slide-progress" value="14" max="73"></progress>
 </div>
 </body>
 </html>

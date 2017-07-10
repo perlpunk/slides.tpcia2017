@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-store" />
-<title>Can we fix this?</title>
+<title>Flow nodes as mapping keys</title>
 <link rel="prev" href="slide028.html" />
 <link rel="next" href="slide030.html" />
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -17,19 +17,52 @@
 <div id="test"></div>
 -->
 <div id="bbslides-slide" class="bbslides-frame">
-<h1 id="node_1" class="bbslides-h1">Can we fix this?</h1>
-<ul><li id="node_3">We could create YAML 1.3</li><li id="node_4">Let&#39;s talk about that in some minutes</li><li id="node_5">We could make implementation easier</li></ul>
+<h1 id="node_1" class="bbslides-h1">Flow nodes as mapping keys</h1>
+<ul><li id="node_3">A mapping key can also be a flow node</li><li id="node_4">and it doesn&#39;t need to be explicit!</li><li id="node_5">So you have to stack events in some cases</li></ul>
+<div id="node_6" class="codebox">---
+<span id="node_7" class="bbslides-comment"># Just a flow node</span>
+[a, b, c]
+</div>
+<div id="node_8" class="codebox">---
+<span id="node_9" class="bbslides-comment"># Flow node as a key</span>
+[a, b, c]<span id="node_10" style="color: fuchsia">: value</span>
+</div>
+<br>
+<div id="node_12" class="codebox">Events            
+
+sequence-start
+scalar a
+scalar b
+scalar c
+sequence-end
+
+
+</div>
+<div id="node_13" class="codebox">Events              
+<span id="node_14" style="color: fuchsia">mapping-start</span>
+sequence-start
+scalar a
+scalar b
+scalar c
+sequence-end
+scalar value
+<span id="node_15" style="color: fuchsia">mapping-end</span>
+</div>
 </div>
 <script type="text/javascript">
 register_animation('node_3', 2, 'greyin', {});
 register_animation('node_4', 3, 'greyin', {});
 register_animation('node_5', 4, 'greyin', {});
+register_animation('node_6', 5, 'appear', {});
+register_animation('node_8', 6, 'appear', {});
+register_animation('node_12', 5, 'appear', {});
+register_animation('node_13', 6, 'appear', {});
 
 var prev_page = 'slide028.html';
 var next_page = 'slide030.html';
 </script>
 <div id="bbslides-navi">
-Slide 29/66
+Slide 29/73
 <a href="slide028.html" onclick="previous_step();return false">BACK</a>
 <a href="index.html">UP</a>
 <a href="slide030.html" onclick="next_step(); return false">NEXT</a>
@@ -38,7 +71,7 @@ next page: ( page down ) | previous page: ( page up ) |
 index: ( arrow-up )</span>
 
 <br>
-<progress id="slide-progress" value="29" max="66"></progress>
+<progress id="slide-progress" value="29" max="73"></progress>
 </div>
 </body>
 </html>

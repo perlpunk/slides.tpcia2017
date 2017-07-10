@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-store" />
-<title>Test Suite Event Format</title>
+<title>YAML Loading, Parsing and Constructing</title>
 <link rel="prev" href="slide035.html" />
 <link rel="next" href="slide037.html" />
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -17,45 +17,23 @@
 <div id="test"></div>
 -->
 <div id="bbslides-slide" class="bbslides-frame">
-<h1 id="node_1" class="bbslides-h1">Test Suite Event Format</h1>
-<div id="node_2" class="bbslides-horizontal"><div id="node_3" class="codebox"># Events
-1. stream-start
-2. document-start
-3. mapping-start
-4. scalar &#39;key a&#39;
-5. scalar &#39;1&#39;
-6. scalar &#39;key b&#39;
-7. sequence-start
-8. scalar &#39;item 1&#39;
-9. scalar &#39;item 2&#39;
-10. sequence-end
-11. mapping-end
-12. document-end
-13. stream-end
-</div><div id="node_4" class="codebox"> # Test Suite Format
-+STR
-+DOC
-+MAP
-=VAL :key a
-=VAL :1
-=VAL :key b
-+SEQ
-=VAL :item 1
-=VAL :item 2
--SEQ
--MAP
--DOC
--STR
-</div></div>
+<h1 id="node_1" class="bbslides-h1">YAML Loading, Parsing and Constructing</h1>
+<ul><li id="node_3">Before showing the test suite, we should talk about loading, parsing and constructing first</li><li id="node_4">We can divide the process of loading a YAML Stream into parsing and constructing.</li><li id="node_5">Parsing suceeds if the YAML is valid</li><li id="node_6">It returns a series of events, but it doesn&#39;t know anything about its contents, though</li><li id="node_7">Constructing takes these events and decides about numbers, booleans, tags</li><li id="node_8">and finally creates a data structure</li><li id="node_9">Let&#39;s have a closer look at loading a document</li></ul>
 </div>
 <script type="text/javascript">
-register_animation('node_4', 1, 'appear', {});
+register_animation('node_3', 2, 'greyin', {});
+register_animation('node_4', 3, 'greyin', {});
+register_animation('node_5', 4, 'greyin', {});
+register_animation('node_6', 5, 'greyin', {});
+register_animation('node_7', 6, 'greyin', {});
+register_animation('node_8', 7, 'greyin', {});
+register_animation('node_9', 8, 'greyin', {});
 
 var prev_page = 'slide035.html';
 var next_page = 'slide037.html';
 </script>
 <div id="bbslides-navi">
-Slide 36/66
+Slide 36/73
 <a href="slide035.html" onclick="previous_step();return false">BACK</a>
 <a href="index.html">UP</a>
 <a href="slide037.html" onclick="next_step(); return false">NEXT</a>
@@ -64,7 +42,7 @@ next page: ( page down ) | previous page: ( page up ) |
 index: ( arrow-up )</span>
 
 <br>
-<progress id="slide-progress" value="36" max="66"></progress>
+<progress id="slide-progress" value="36" max="73"></progress>
 </div>
 </body>
 </html>
