@@ -3,8 +3,8 @@ title: The State of The YAML
 content: |
   [title]The State of The YAML™[/title]
   [list]
-  [*]Where: German Perl Workshop 2017, Hamburg
-  [*]When: June 26th-28th 2017
+  [*]Where: The Perl Conference in Amsterdam
+  [*]When: August 9th-11th 2017
   [*]Author: Tina Müller
   [/list]
 ---
@@ -16,7 +16,7 @@ content: |
   [*]Until 2015, any shell script that got bigger then 3 lines, I would convert to perl
   [*]I had used tmux, but never done any remote pair programming
   [*]I thought I know a lot of vim and tmux already
-  [*]Then, at the Perl QA Hackathon 2015, I met Ingy
+  [*]Then, at the Perl QA Hackathon 2015, this changed, because I met Ingy
   [/list]
   [h1 animation="6,appear"][img=ingy-pqah2015.jpg]ingy[/img][/h1]
 ---
@@ -26,8 +26,10 @@ content: |
   [list animation="1,greyin"]
   [*]Since then, we have been hacking together a lot, mostly remotely
   [*]Ingy has a new idea every day
-  [*]and if he had the time, he would learn a new programming language every day
+  [*][codebox][color=grey]# IRC[/color]
+  [color=grey]<[/color][color=red]ingy[/color][color=grey]>[/color] I have an idea[/codebox]
   [*]Ingy is one of the three inventors of YAML
+  [*](and of many scripts and modules in perl, bash, ruby, nodejs, ...)
   [*]So it was just a matter of time until I got in touch with YAML stuff
   [/list]
 ---
@@ -94,6 +96,22 @@ content: |
   [*]So no worries if you don't understand some examples
   [/list]
 ---
+title: Abstract
+content: |
+  [title][/title]
+  YAML is widely-used, but still all the implementations in various languages behave differently.
+  [list]
+  [*] [color=grey]Why is that? I show you YAML examples that make you cry (at least if you develop a parser).[/color]
+  [*] [color=grey]Can we fix that?[/color]
+  [*] [color=grey]Is there a test suite that I can use if I want to implement a parser (in any language)?[/color]
+  [*] [color=grey]Can I quickly find out how different frameworks are parsing my YAML or do I have to install all of them?[/color]
+  [*] [color=grey]Can I find out which frameworks conform to the spec?[/color]
+  [*] [color=grey]Is there a parser in Perl or in any language that fully conforms to the YAML 1.2 spec?[/color]
+  [*] [color=grey]The Future of YAML: Are there any plans for 1.3 or 2.0?[/color]
+  [*] [color=grey]I'll talk about the YAML Summit 2017 in Berlin[/color]
+  [*] [color=grey]I'll talk about the Perl Toolchain Summit in Lyon[/color]
+  [/list]
+---
 title: Legend
 content: |
   [h1]Legend[/h1]
@@ -124,12 +142,12 @@ content: |
   [*]That's why both documents are valid
   [*]YAML.pm parses this as invalid, most other frameworks can do this
   [/list]
-  [horizontal][codebox]---
+  [horizontal][codebox animation=2,appear]---
   a list of things:
   [indent]  - [/indent]a
   [indent]  - [/indent]b
   [indent]  - [/indent]c
-  [/codebox][codebox]---
+  [/codebox][codebox animation=4,appear]---
   a list of things:
   [indent]- [/indent]a
   [indent]- [/indent]b
@@ -185,11 +203,11 @@ content: |
   [*]js-yaml has problems with mapping key anchors
   [/list]
   [codebox]---
-  a mapping: [anchor]&map[/anchor]
-    [anchor]&key[/anchor] a: [anchor]&value[/anchor] b
-  the same mapping: [alias]*map[/alias]
-  key a: [alias]*key[/alias]
-  value b: [alias]*value[/alias]
+  a mapping: [anchor animation=10,appear]&map[/anchor]
+    [anchor animation=11,appear]&key[/anchor] a: [anchor animation=12,appear]&value[/anchor] b
+  [span animation=10,appear]the same mapping: [alias]*map[/alias][/span]
+  [span animation=11,appear]key a: [alias]*key[/alias][/span]
+  [span animation=12,appear]value b: [alias]*value[/alias][/span]
   [/codebox]
 ---
 title: Anchors and Tags
@@ -209,10 +227,10 @@ content: |
   [*]Example 1: Anchor and Tag on same line
   [*]Example 2: Anchor and Tag on multiple lines (except mapping keys)
   [/list]
-  [horizontal][codebox animation="2,appear"]--- # Example 1
+  [horizontal][codebox animation="2,appear"]--- [comment]# Example 1[/comment]
   key: [color=blue]!tag &anchor[/color]
     [color=lime]&a !t[/color] a: 1
-  [/codebox][codebox animation="3,appear"]--- # Example 2
+  [/codebox][codebox animation="3,appear"]--- [comment]# Example 2[/comment]
   key:
     [color=blue]&anchor
 
@@ -226,25 +244,34 @@ content: |
   [list]
   [*]During parsing, you sometimes don't know to which node they belong until later
   [/list]
-  [horizontal][codebox animation="1,appear"]--- # Example 3
+  [horizontal]
+  [codebox animation="1,appear"]--- [comment]# Example 3[/comment]
   key:
     !tag
     &anchor [color=#cccccc](unparsed content)[/color]
 
-  --- # After parsing
+  [/codebox]
+  [codebox animation=3,appear]--- [comment]# Example 4[/comment]
+  key:
+    !tag
+    &anchor [color=#cccccc](unparsed content)[/color]
+
+  [/codebox]
+  [/horizontal]
+  [br]
+  [horizontal]
+  [codebox animation="2,appear"]--- [comment]# After parsing         [/comment]
   key:
     [color=blue]!tag[/color]
     [color=lime]&anchor[/color] a: 1
-  [/codebox][codebox animation="2,appear"]--- # Example 4
-  key:
-    !tag
-    &anchor [color=#cccccc](unparsed content)[/color]
+  [/codebox]
 
-  --- # After parsing
+  [codebox animation=4,appear]--- [comment]# After parsing         [/comment]
   key:
     [color=lime]!tag
     &anchor[/color] scalar
-  [/codebox][/horizontal]
+  [/codebox]
+  [/horizontal]
 ---
 title: Content on starting line
 content: |
@@ -253,11 +280,14 @@ content: |
   [*]You can start nodes on the same line as '---'
   [/list]
   [horizontal][codebox]--- text
-  --- &anchor |
+
+  --- [anchor]&anchor[/anchor] |
   some
   lines
-  --- "string" # a comment
-  --- > # folded block scalar
+
+  --- "string" [comment]# a comment[/comment]
+
+  --- > [comment]# folded block scalar[/comment]
   more
   lines
   [/codebox][/horizontal]
@@ -268,8 +298,8 @@ content: |
   [list]
   [*]Frameworks' opinions differ on this...
   [/list]
-  [horizontal][codebox animation="1,appear"]# trivial for
-  # one line
+  [horizontal][codebox animation="1,appear"][comment]# trivial for
+  # one line[/comment]
 
   --- a: 1
 
@@ -282,8 +312,8 @@ content: |
   # libyaml, ruby
   # psych, snakeyaml,
   # yaml-cpp, luajit
-  [/codebox][codebox animation="2,appear"]# what about
-  # two entries?
+  [/codebox][codebox animation="2,appear"][comment]# what about
+  # two entries?[/comment]
 
   --- a: 1
   b: 2
@@ -293,8 +323,8 @@ content: |
 
   # [b]invalid[/b] for:
   # [color=blue]js-yaml[/color]
-  [/codebox][codebox animation="3,appear"]# what's the correct
-  # indentation?
+  [/codebox][codebox animation="3,appear"][comment]# what's the correct
+  # indentation?[/comment]
 
   --- a: 1
       b: 2
@@ -326,7 +356,7 @@ content: |
 
   # JSON
   {
-    "literal": "keeps content including trailing spaces  \n\nand newlines\n"
+    "literal": "keeps content including trailing spaces[trspace]  [/trspace]\n\nand newlines\n"
   }
   [/codebox][/horizontal]
 ---
@@ -335,14 +365,14 @@ content: |
   [title][/title]
   [horizontal][codebox]---
   a: >
-    lines
-    are folded except
-
-    there is an empty line
+  [indent]  [/indent]lines
+  [indent]  [/indent]are folded except
+  [indent]  [/indent]
+  [indent]  [/indent]there is an empty line
   b: >
-    or a
-      more
-    indented line
+  [indent]  [/indent]or a
+  [indent]  [/indent]  more
+  [indent]  [/indent]indented line
 
   # JSON
   {
@@ -359,6 +389,23 @@ content: |
   [*]Indentation Indicators
   [*]Chomping Indicators
   [/list]
+  [codebox]--- |2 [comment]# indentation is 2[/comment]
+  [indent]  [/indent]  a
+  [indent]  [/indent]b
+  [indent]  [/indent]c
+
+  # JSON
+  # "  a\nb\nc\n"
+  [/codebox]
+  [codebox]--- |- [comment]# remove last linebreak[/comment]
+  [indent]  [/indent]a
+  [indent]  [/indent]b
+  [indent]  [/indent]c
+
+  # JSON
+  # "a\nb\nc"
+  [/codebox]
+
 ---
 title: Implicit Keys
 content: |
@@ -368,9 +415,9 @@ content: |
   [*]Most of the YAML you are working with is probably using implicit keys
   [/list]
   [codebox animation="5,appear"]---
-  key1: a [comment]# all implicit keys[/comment]
-  key2: b
-  key3: c
+  key1: a [comment]  # all implicit keys[/comment]
+  "key2": b
+  'key3': c
   [/codebox]
   [list animation="6,greyin"]
   [*]But implicit keys are limited:
@@ -386,20 +433,16 @@ content: |
   [*]Perl and many other languages don't support that natively, but you can do it in YAML
   [*]Sometimes you want to break your key into multiple lines for readability
   [/list]
-  [codebox animation="5,appear"]---
-  [color=fuchsia]?[/color] simple explicit key
+  [codebox animation="5,appear"][color=fuchsia]?[/color] simple explicit key
   [color=fuchsia]:[/color] simple value
-
-  [color=fuchsia]?[/color] inner key: inner value [comment]# this map is a key of the outer map[/comment]
+  [/codebox][br][codebox animation="6,appear"][color=fuchsia]?[/color] inner key: inner value [comment]# this map is a key of the outer map[/comment]
   [color=fuchsia]:[/color] outer value
-
-  [color=fuchsia]?[/color] this is a
+  [/codebox][br][codebox animation="7,appear"][color=fuchsia]?[/color] this is a
     very long key broken
     into several
     lines
   [color=fuchsia]:[/color] and a short value
-
-  [color=fuchsia]?[/color] some explicit key
+  [/codebox][br][codebox animation="8,appear"][color=fuchsia]?[/color] some explicit key
   [comment]# but the value is actually optional![/comment]
   [/codebox]
 
@@ -450,11 +493,11 @@ content: |
   [*]So you have to stack events in some cases
   [/list]
   [codebox animation="5,appear"]---
-  # Just a flow node
+  [comment]# Just a flow node[/comment]
   [a, b, c]
   [/codebox]
   [codebox animation="6,appear"]---
-  # Flow node as a key
+  [comment]# Flow node as a key[/comment]
   [a, b, c][color=fuchsia]: value[/color]
   [/codebox]
   [br]
@@ -480,6 +523,23 @@ content: |
   [/codebox]
 
 ---
+title: Abstract
+content: |
+  [title][/title]
+  YAML is widely-used, but still all the implementations in various languages behave differently.
+  [list]
+  [*] Why is that? I show you YAML examples that make you cry (at least if you develop a parser).
+  [*] [color=grey]Can we fix that?[/color]
+  [*] [color=grey]Is there a test suite that I can use if I want to implement a parser (in any language)?[/color]
+  [*] [color=grey]Can I quickly find out how different frameworks are parsing my YAML or do I have to install all of them?[/color]
+  [*] [color=grey]Can I find out which frameworks conform to the spec?[/color]
+  [*] [color=grey]Is there a parser in Perl or in any language that fully conforms to the YAML 1.2 spec?[/color]
+  [*] [color=grey]The Future of YAML: Are there any plans for 1.3 or 2.0?[/color]
+  [*] [color=grey]I'll talk about the YAML Summit 2017 in Berlin[/color]
+  [*] [color=grey]I'll talk about the Perl Toolchain Summit in Lyon[/color]
+  [/list]
+
+---
 title: Can we fix this?
 content: |
   [h1]Can we fix this?[/h1]
@@ -494,6 +554,10 @@ content: |
   [h1]The YAML 1.2 Spec[/h1]
   [list animation="1,greyin"]
   [*]The PDF has 84 pages
+  [*][codebox][color=grey]# IRC[/color]
+  [color=grey]<[/color][b]tinita[/b][color=grey]>[/color] remember that I don't know the spec very well
+  [color=grey]<[/color][color=red]ingy[/color][color=grey]>[/color] tinita: I don't know it well either :)
+  [/codebox]
   [*]It has a lot of examples
   [*]...but not enough
   [*]It has very few invalid examples
@@ -507,6 +571,13 @@ content: |
   [h1][img=iggy-pop-no-fun.jpg]NO FUN![/img][/h1]
   [br][br][br][br]
   [color=grey]https://i.ytimg.com/vi/YH79JNa0lpg/hqdefault.jpg[/color]
+
+---
+title: Idea
+content: |
+  [codebox][color=grey]# IRC[/color]
+  [color=grey]<[/color][color=red]ingy[/color][color=grey]>[/color] I have an idea[/codebox]
+
 ---
 title: Enter YAML Test Suite
 content: |
@@ -517,7 +588,7 @@ content: |
   [*]It can be used to test parsing language independently
   [*]It can also be used to test the whole loading process, but since this is language dependent, it is limited
   [*]At some point Felix "flyx" Krause joined the project
-  [*]He was implementing a (very fast) YAML parser in the Nim language
+  [*]He was implementing a (very fast and complete) YAML parser in the Nim language
   [*]He turned almost all of the Spec examples into Test Suite tests
   [/list]
 ---
@@ -537,13 +608,13 @@ content: |
 title: Loading Process
 content: |
   [title][/title]
-  [horizontal][codebox]# YAML
+  [horizontal][codebox][comment]# YAML[/comment]
   [span animation='1,greyin']---[/span]
   [span animation='2,greyin']key a: [/span][span animation="3,greyin"]1[/span]
   [span animation='4,greyin']key b: [/span]
   [span animation="5,greyin"]- item 1[/span]
   [span animation="6,greyin"]- item 2[/span]
-  [/codebox][codebox]parse ->[/codebox][codebox]Events
+  [/codebox][codebox]parse ->[/codebox][codebox][comment]Events[/comment]
   [span]1. stream-start[/span]
   [span animation="1,appear"]2. document-start[/span]
   [span animation="2,appear"]3. mapping-start[/span]
@@ -557,7 +628,7 @@ content: |
   [span animation="8,appear"]11. mapping-end[/span]
   [span animation="9,appear"]12. document-end[/span]
   [span animation="10,appear"]13. stream-end[/span]
-  [/codebox][codebox]construct ->[/codebox][codebox]# Perl
+  [/codebox][codebox]construct ->[/codebox][codebox][comment]# Perl[/comment]
   [span animation="1,appear"]$document = [/span][span animation="2,appear"]{
       'key a' => [/span][span animation="3,appear"]1,[/span]
   [span animation="4,appear"]    'key b' => [/span][span animation="5,appear"][
@@ -580,7 +651,7 @@ content: |
 title: Test Suite Event Format
 content: |
   [title][/title]
-  [horizontal][codebox]# Events
+  [horizontal][codebox][comment]# Events[/comment]
   1. stream-start
   2. document-start
   3. mapping-start
@@ -594,7 +665,7 @@ content: |
   11. mapping-end
   12. document-end
   13. stream-end
-  [/codebox][codebox animation="1,appear"] # Test Suite Format
+  [/codebox][codebox animation="1,appear"][comment]# Test Suite Format[/comment]
   +STR
   +DOC
   +MAP
@@ -664,6 +735,24 @@ content: |
   [br][br][br]
   [h1][img=fun.jpg]FUN![/img][/h1]
   [small][color=grey]Portland, 2016[/color][/small]
+
+---
+title: Abstract
+content: |
+  [title][/title]
+  YAML is widely-used, but still all the implementations in various languages behave differently.
+  [list]
+  [*] Why is that? I show you YAML examples that make you cry (at least if you develop a parser).
+  [*] Can we fix that?
+  [*] Is there a test suite that I can use if I want to implement a parser (in any language)?
+  [*] [color=grey]Can I quickly find out how different frameworks are parsing my YAML or do I have to install all of them?[/color]
+  [*] [color=grey]Can I find out which frameworks conform to the spec?[/color]
+  [*] [color=grey]Is there a parser in Perl or in any language that fully conforms to the YAML 1.2 spec?[/color]
+  [*] [color=grey]The Future of YAML: Are there any plans for 1.3 or 2.0?[/color]
+  [*] [color=grey]I'll talk about the YAML Summit 2017 in Berlin[/color]
+  [*] [color=grey]I'll talk about the Perl Toolchain Summit in Lyon[/color]
+  [/list]
+
 ---
 title: Test other Frameworks
 content: |
@@ -675,6 +764,13 @@ content: |
   [*]ruamel, LuaJIT, Perl6 YAMLish, NimYAML, ...
   [*]Do you have to install all of them?
   [/list]
+
+---
+title: Idea
+content: |
+  [codebox][color=grey]# IRC[/color]
+  [color=grey]<[/color][color=red]ingy[/color][color=grey]>[/color] I have an idea[/codebox]
+
 ---
 title: Enter YAML Editor
 content: |
@@ -765,8 +861,9 @@ content: |
   [codeboxsmall][include="ye6.html"]
   [/codeboxsmall]
 ---
-title: YAML Editor Example 7
+title: Paste examples to gist.github.com
 content: |
+  [title][/title]
   Type \g # for a github gist
   [codeboxsmall][include="ye7.html"]
   [/codeboxsmall]
@@ -775,6 +872,23 @@ content: |
 title: YAML Editor
 content: |
   [title]FUN![/title]
+
+---
+title: Abstract
+content: |
+  [title][/title]
+  YAML is widely-used, but still all the implementations in various languages behave differently.
+  [list]
+  [*] Why is that? I show you YAML examples that make you cry (at least if you develop a parser).
+  [*] Can we fix that?
+  [*] Is there a test suite that I can use if I want to implement a parser (in any language)?
+  [*] Can I quickly find out how different frameworks are parsing my YAML or do I have to install all of them?
+  [*] [color=grey]Can I find out which frameworks conform to the spec?[/color]
+  [*] [color=grey]Is there a parser in Perl or in any language that fully conforms to the YAML 1.2 spec?[/color]
+  [*] [color=grey]The Future of YAML: Are there any plans for 1.3 or 2.0?[/color]
+  [*] [color=grey]I'll talk about the YAML Summit 2017 in Berlin[/color]
+  [*] [color=grey]I'll talk about the Perl Toolchain Summit in Lyon[/color]
+  [/list]
 ---
 title: What can we do with this?
 content: |
@@ -792,6 +906,8 @@ content: |
   [*]It would "break" behaviour that people already rely on
   [*]I thought of writing a new parser from scratch
   [/list]
+  [codebox animation=8,appear][color=grey]# IRC[/color]
+  [color=grey]<[/color][b]tinita[/b][color=grey]>[/color] I have an idea[/codebox]
 
 ---
 title: Enter YAML::PP
@@ -825,11 +941,16 @@ content: |
   [list animation="1,greyin"]
   [*]I knew how many tests [b]my[/b] parser was passing
   [*]But how did the [b]other[/b] frameworks perform?
-  [*]Everything was already there to find out
-  [*]So I wrote a script that runs every test from the Test Suite against every framework built into the YAML Editor Docker Image
-  [*]It compares the event format and JSON output
-  [*]It creates a HTML matrix
   [/list]
+  [codebox animation=5,appear][color=grey]# IRC[/color]
+  [color=grey]<[/color][b]tinita[/b][color=grey]>[/color] I have an idea[/codebox]
+  [list animation="6,greyin"]
+  [*]Everything was already there to find out
+  [*]Run every test from the Test Suite against every framework built into the YAML Editor Docker Image
+  [*]Compare the event format and JSON output
+  [*]Create a HTML matrix
+  [/list]
+
 ---
 title: Enter The Matrix
 content: |
@@ -843,6 +964,23 @@ title: Enter YAML Test Matrix
 content: |
   [title][/title]
   [url=http://matrix.yaml.io/]YAML-Test-Matrix[/url]
+
+---
+title: Abstract
+content: |
+  [title][/title]
+  YAML is widely-used, but still all the implementations in various languages behave differently.
+  [list]
+  [*] Why is that? I show you YAML examples that make you cry (at least if you develop a parser).
+  [*] Can we fix that?
+  [*] Is there a test suite that I can use if I want to implement a parser (in any language)?
+  [*] Can I quickly find out how different frameworks are parsing my YAML or do I have to install all of them?
+  [*] Can I find out which frameworks conform to the spec?
+  [*] Is there a parser in Perl or in any language that fully conforms to the YAML 1.2 spec?
+  [*] [color=grey]The Future of YAML: Are there any plans for 1.3 or 2.0?[/color]
+  [*] [color=grey]I'll talk about the YAML Summit 2017 in Berlin[/color]
+  [*] [color=grey]I'll talk about the Perl Toolchain Summit in Lyon[/color]
+  [/list]
 
 ---
 title: So, what about YAML 1.3?
@@ -932,6 +1070,9 @@ content: |
   [*]YAML::PP [url=https://github.com/perlpunk/YAML-PP-p5]https://github.com/perlpunk/YAML-PP-p5[/url]
   [*]Toolchain Summit Wiki Results [url=http://act.qa-hackathon.org/qa2017/wiki?node=Results]http://act.qa-hackathon.org/qa2017/wiki?node=Results[/url]
   [*]YAML Summit RFC Index [url=https://github.com/yaml/summit.yaml.io/wiki/YAML-RFC-Index]https://github.com/yaml/summit.yaml.io/wiki/YAML-RFC-Index[/url]
+  [*][url=https://github.com/perlpunk]https://github.com/perlpunk[/url]
+  [*][url=https://github.com/ingydotnet]https://github.com/ingydotnet[/url]
+  [*][url=https://github.com/flyx]https://github.com/flyx[/url]
   [/list]
 ---
 title: End
